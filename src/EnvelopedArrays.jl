@@ -1,22 +1,21 @@
 __precompile__()
 module EnvelopedArrays
 
-import Base: tail
-export EnvelopedArray, parent, envelope
+import Base: tail, parent
+export EnvelopedArray, envelope
 
 
 struct EnvelopedArray{T<:Number,N,P} <: AbstractArray{T,N}
    envelope::T
    parent::P
    size::NTuple{N,Int}
-   function EnvelopedArray{T,N,P}(envelope,parent,size) where {T,N,P}
-      new(envelope,parent,size)
-   end
 end
 function EnvelopedArray(envelope::T,parent::P) where {T<:Number,P}
    psize = size(parent)
    esize = (psize[1]+1,tail(psize)...)
-   EnvelopedArray{T,ndims(P),P}(envelope,parent,esize)
+   bigtype = promote_type(T,eltype(P))
+   pp = convert.(bigtype,parent)
+   EnvelopedArray{promote_type(T,eltype(P)),ndims(parent),typeof(pp)}(envelope,pp,esize)
 end
 
 
