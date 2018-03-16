@@ -11,7 +11,7 @@ using Base.Test
    @test x[2] == x_vcat[2]
    @test x[end] == x_vcat[end]
    @test x[2,2] == x_vcat[2,2]
-   @test x[1:3,1] .== x_vcat[1:3,1]
+   @test all(x[1:3,1] .== x_vcat[1:3,1])
    
    
    y = EnvelopedArray(1,a)
