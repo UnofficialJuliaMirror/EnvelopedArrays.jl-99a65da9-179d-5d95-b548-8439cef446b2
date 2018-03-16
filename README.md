@@ -17,6 +17,7 @@ x_env = EnvelopedArray(0.0,a)
 EnvelopedArrays are immutable, but creating a new instance is quick. So, if you wanted to change the parent array in `x_env` (from above) from `a` to `a2` , you can just do `x_env = EnvelopedArray(0.0,a2)`. Doing it this way just creates a reference, there is no copying of the underlying array.
 
 
+
 ### Thanks
 
-Thanks to the helpful people on Julia Slack for answering my questions.
+Thanks to the helpful people on Julia Slack for answering my questions. Additional feedback or suggested improvements are welcome!
